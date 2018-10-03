@@ -10,5 +10,6 @@ export default {
   },
   css: ['~/assets/css/style.css'],
   modules: ['@nuxtjs/axios'],
+  plugins: ['~/plugins/vue-svgicon.js'],
   serverMiddleware: ['~/api/index.js']
 }

@@ -4,6 +4,7 @@
       <aside class="mr-6">
         <div>
           <nuxt-link v-for="(item, key) of items" :key="key" :to="item.to" exact>
+            <svgicon :icon="item.icon" />
             {{ item.title }}
           </nuxt-link>
         </div>
@@ -17,12 +18,13 @@
 </template>
 
 <script>
-  export default {
+  import '@/components/Icons'
 
+  export default {
     data() {
       return {
         items: [
-          { title: 'Inbox', to: { name: 'index' } },
+          { title: 'Inbox', to: { name: 'index' }, icon: 'inbox' }
         ]
       }
     }
