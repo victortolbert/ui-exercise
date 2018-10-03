@@ -1,4 +1,7 @@
 export default {
+  env: {
+    baseURL: process.env.BASE_URL || 'http://localhost:3000'
+  },
   mode: 'spa',
   head: {
     title: 'UI Exercise',

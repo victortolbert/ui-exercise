@@ -21,7 +21,7 @@
 <script>
   export default {
     async asyncData({ app }) {
-      let messages = await app.$axios.$get(`/api/messages`)
+      let messages = await app.$axios.$get(`${process.env.baseURL}/api/messages`)
       return { messages: messages }
     }
   }

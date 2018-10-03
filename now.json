@@ -1,0 +1,6 @@
+{
+  "alias": "ui-exercise",
+  "env": {
+    "BASE_URL": "https://ui-exercise.now.sh"
+  }
+}
