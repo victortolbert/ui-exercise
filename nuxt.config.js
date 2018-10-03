@@ -1,6 +1,6 @@
 export default {
+  mode: 'spa',
   head: {
-    mode: 'spa',
     title: 'UI Exercise',
     meta: [
       { charset: 'utf-8' },
