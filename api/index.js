@@ -1,8 +1,9 @@
-const path = require('path')
-const express = require('express')
-const jsonServer = require('json-server')
+import path from 'path'
+import express from 'express'
+import jsonServer from 'json-server'
+
 const api = express()
 
 api.use('/api', jsonServer.router(path.join(__dirname, '..', 'api', 'emails.json')))
 
-module.exports = api
+export default api
