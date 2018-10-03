@@ -7,7 +7,7 @@
       </td>
       <td class="mr-4 flex-grow">
         <div class="md:inline">
-          <span v-for="tag in message.tags" :key="tag">
+          <span class="bg-grey-light rounded-sm text-xs mr-1 px-1 capitalize" v-for="tag in message.tags" :key="tag">
             {{tag}}
           </span>
         </div>
