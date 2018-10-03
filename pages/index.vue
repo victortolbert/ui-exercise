@@ -1,15 +1,19 @@
 <template>
   <table>
-    <tr v-for="message in messages" :key="message.id">
-      <td><input type="checkbox" /></td>
-      <td>{{message.sender}}</td>
-      <td>
-        <span v-for="tag in message.tags" :key="tag">
-          {{tag}}
-        </span>
+    <tr class="flex flex-col md:flex-row" v-for="message in messages" :key="message.id">
+      <td class="mr-4"><input type="checkbox" /></td>
+      <td class="mr-4">
+        {{message.sender}}
       </td>
-      <td>{{message.subject}}</td>
-      <td>{{new Date(message.date).toLocaleDateString()}}</td>
+      <td class="mr-4 flex-grow">
+        <div class="md:inline">
+          <span v-for="tag in message.tags" :key="tag">
+            {{tag}}
+          </span>
+        </div>
+        {{message.subject}}
+      </td>
+      <td class="mr-4">{{new Date(message.date).toLocaleDateString()}}</td>
     </tr>
   </table>
 </template>
@@ -22,5 +26,3 @@
     }
   }
 </script>
-
-
