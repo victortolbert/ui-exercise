@@ -10,7 +10,11 @@
 </template>
 
 <script>
+  import { init } from '~/shared'
+
   export default {
+    fetch: init,
+
     async asyncData({ app, route }) {
       const message = await app.$axios.$get(`${process.env.baseURL}/api/messages/${route.params.id}`)
       return { message: message }

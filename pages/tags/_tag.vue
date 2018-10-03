@@ -18,12 +18,14 @@
 </template>
 
 <script>
+  import { init } from '~/shared'
   import Message from '~/components/Message'
 
   export default {
     components: {
       Message
     },
+    fetch: init,
     data() {
       return {
         messages: this.$store.getters.getMessageByTag(this.$route.params.tag)
