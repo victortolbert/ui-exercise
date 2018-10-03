@@ -8,6 +8,7 @@ export default {
       { hid: 'description', content: 'UI Exercise' }
     ]
   },
+  css: ['~/assets/css/style.css'],
   modules: ['@nuxtjs/axios'],
   serverMiddleware: ['~/api/index.js']
 }
