@@ -13,6 +13,13 @@ const createStore = () => {
             ...message,
             isSelected: false
           }
+        })),
+      TOGGLE_ALL: (state, messages) =>
+        (state.messages = messages.map(message => {
+          return {
+            ...message,
+            isSelected: !message.isSelected
+          }
         }))
     }
   })
