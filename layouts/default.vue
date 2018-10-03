@@ -10,9 +10,13 @@
     <main class="m-4 flex flex-col md:flex-row">
       <aside class="mr-6">
         <div>
-          <nuxt-link v-for="(item, key) of items" :key="key" :to="item.to" exact>
+          <nuxt-link v-for="(item, key) of items" :key="key" :to="item.to" exact class="block hover:bg-grey-light rounded-r-full">
             <svgicon :icon="item.icon" />
             {{ item.title }}
+          </nuxt-link>
+          <nuxt-link v-for="(value, key) in tags" :key="key" :to="`/tags/${key}`" class="block hover:bg-grey-light rounded-r-full capitalize" :class="key">
+            <svgicon icon="label" />
+            {{ key }}
           </nuxt-link>
         </div>
       </aside>
@@ -26,6 +30,7 @@
 
 <script>
   import '@/components/Icons'
+  import { mapGetters } from 'vuex'
 
   export default {
     data() {
@@ -34,6 +39,11 @@
           { title: 'Inbox', to: { name: 'index' }, icon: 'inbox' }
         ]
       }
+    },
+    computed: {
+      ...mapGetters([
+        'tags'
+      ]),
     }
   }
 </script>

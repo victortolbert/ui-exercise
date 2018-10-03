@@ -6,6 +6,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+p {
+  margin: 1rem 0;
+  line-height: 1.5;
+  font-weight: 100;
+}
 
 .svg-icon {
   display: inline-block;
