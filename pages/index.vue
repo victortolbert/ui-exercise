@@ -1,19 +1,25 @@
 <template>
-  <table>
-    <tr class="flex flex-col md:flex-row cursor-pointer" v-for="message in messages" :key="message.id" @click="goTo(message.id)">
-      <td class="mr-4"><input type="checkbox" /></td>
-      <td class="mr-4">
-        {{message.sender}}
+  <table class="text-sm text-grey-darker table-fixed w-full">
+    <tr v-for="message in messages" :key="message.id" class="group hover:bg-grey-lighter hover:shadow cursor-pointer flex border-b" @click.stop="goTo(message.id)">
+      <td class="py-2 invisible group-hover:visible">
+        <a class="mr-1" href="#" title="More">
+          <svgicon icon="drag-vertical" />
+        </a>
       </td>
-      <td class="mr-4 flex-grow">
-        <div class="md:inline">
-          <span class="bg-grey-light rounded-sm text-xs mr-1 px-1 capitalize" v-for="tag in message.tags" :key="tag">
-            {{tag}}
-          </span>
-        </div>
-        {{message.subject}}
+      <td class="py-2 pr-3">
+        <input @click.stop="" type="checkbox" />
       </td>
-      <td class="mr-4">{{new Date(message.date).toLocaleDateString()}}</td>
+      <td class="py-2 pr-6">
+        {{ message.sender }}
+      </td>
+      <td class="py-2 pr-1 text-black" v-if="message.tags.length">
+        <span v-if="message.tags.length" class="mr-1 px-1 bg-grey-light rounded-sm text-xs capitalize" :key="tag" v-for="tag in message.tags">
+          {{tag}}
+        </span>
+      </td>
+      <td class="py-2 pr-4 text-black font-medium">{{ message.subject }}</td>
+      <td class="py-2 pr-2 flex-grow">{{ shortBody }}</td>
+      <td class="py-2 pr-2 text-right">{{ new Date(message.date).toLocaleDateString() }}</td>
     </tr>
   </table>
 </template>
