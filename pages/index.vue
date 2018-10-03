@@ -9,7 +9,7 @@
         </span>
       </td>
       <td>{{message.subject}}</td>
-      <td>{{message.date}}</td>
+      <td>{{new Date(message.date).toLocaleDateString()}}</td>
     </tr>
   </table>
 </template>
