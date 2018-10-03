@@ -7,7 +7,7 @@
         </a>
       </td>
       <td class="py-2 pr-3">
-        <input @click.stop="" type="checkbox" />
+        <input v-model="message.isSelected" @click.stop="" type="checkbox" />
       </td>
       <td class="py-2 pr-6">
         {{ message.sender }}
@@ -18,17 +18,22 @@
         </span>
       </td>
       <td class="py-2 pr-4 text-black font-medium">{{ message.subject }}</td>
-      <td class="py-2 pr-2 flex-grow">{{ shortBody }}</td>
+      <td class="msg__col msg__col--body pr-2 flex-grow">{{ shortBody }}</td>
       <td class="py-2 pr-2 text-right">{{ new Date(message.date).toLocaleDateString() }}</td>
     </tr>
   </table>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+  import { init, strip } from '~/shared'
+
   export default {
-    async asyncData({ app }) {
-      let messages = await app.$axios.$get(`${process.env.baseURL}/api/messages`)
-      return { messages: messages }
+    fetch: init,
+    computed: {
+      ...mapState({
+        messages: state => state.messages
+      })
     },
     methods: {
       goTo(id) {
