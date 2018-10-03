@@ -1,5 +1,12 @@
 <template>
   <div>
+    <nav class="shadow-md bg-grey-lightest text-white mb-8" role="navigation" aria-label="main navigation">
+      <a class="inline-block text-red uppercase font-bold ml-4 py-4" href="/">
+        <svgicon icon="logo-mark" />
+        Mail
+      </a>
+    </nav>
+
     <main class="m-4 flex flex-col md:flex-row">
       <aside class="mr-6">
         <div>

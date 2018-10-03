@@ -1,6 +1,6 @@
 <template>
   <table>
-    <tr class="flex flex-col md:flex-row" v-for="message in messages" :key="message.id">
+    <tr class="flex flex-col md:flex-row cursor-pointer" v-for="message in messages" :key="message.id" @click="goTo(message.id)">
       <td class="mr-4"><input type="checkbox" /></td>
       <td class="mr-4">
         {{message.sender}}
@@ -23,6 +23,11 @@
     async asyncData({ app }) {
       let messages = await app.$axios.$get(`${process.env.baseURL}/api/messages`)
       return { messages: messages }
+    },
+    methods: {
+      goTo(id) {
+        this.$router.push({ path: `/${id}` })
+      }
     }
   }
 </script>
