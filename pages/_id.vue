@@ -14,10 +14,10 @@
 
   export default {
     fetch: init,
-
-    async asyncData({ app, route }) {
-      const message = await app.$axios.$get(`${process.env.baseURL}/api/messages/${route.params.id}`)
-      return { message: message }
+    data() {
+      return {
+        message: this.$store.getters.getMessageById(this.$route.params.id)
+      }
     }
   }
 </script>
