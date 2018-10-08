@@ -15,8 +15,17 @@ const createStore = () => {
             obj[tag]++
             return obj
           }, {}),
-      getMessageByTag: state => tag => {
+      getMessagesByTag: state => tag => {
         return state.messages.filter(message => message.tags.indexOf(tag) > -1)
+      },
+      getMessageById: state => id => {
+        return state.messages.find(message => message.id == id)
+      },
+      selectedMessages: state => {
+        return state.messages.filter(message => message.isSelected)
+      },
+      allSelected: state => {
+        return state.messages.every(message => message.isSelected)
       }
     },
     mutations: {
@@ -27,13 +36,18 @@ const createStore = () => {
             isSelected: false
           }
         })),
-      TOGGLE_ALL: (state, messages) =>
-        (state.messages = messages.map(message => {
+      TOGGLE_ALL: (state) =>
+        (state.messages = state.messages.map(message => {
           return {
             ...message,
-            isSelected: !message.isSelected
+            isSelected: state.messages.every(message => message.isSelected) ? false : true
           }
         }))
+    },
+    actions: {
+      toggleAll: ({ commit }, payload) => {
+        commit('TOGGLE_ALL', payload)
+      }
     }
   })
 }

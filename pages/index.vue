@@ -3,9 +3,39 @@
     <thead>
       <tr class="flex border-b text-2xl">
         <th class="pr-3 text-left font-normal">
-          <input @click.stop="$store.commit('TOGGLE_ALL', messages)" type="checkbox" />
+          <input v-model="allSelected" type="checkbox" />
         </th>
-        <th class="text-left font-normal pr-2 flex-grow">
+        <th class="msg__col text-left font-normal pr-2 flex-grow">
+          <div :class="[ selectedMessages.length ? 'hidden' : 'inline-block' ]">
+            <a class="mr-1" href="#" title="Refresh">
+              <svgicon icon="refresh" />
+            </a>
+          </div>
+          <div class="inline-block" v-show="selectedMessages.length">
+            <a href="#" title="Archive selected">
+              <svgicon icon="archive" />
+            </a>
+            <a href="#" title="Report spam">
+              <svgicon icon="alert-octagon" />
+            </a>
+            <a href="#" title="Delete">
+              <svgicon icon="delete" />
+            </a>
+            <a href="#" title="Mark as read">
+              <svgicon icon="email-open" />
+            </a>
+            <a href="#" title="Snooze">
+              <svgicon icon="clock" />
+            </a>
+          </div>
+          <a class="mr-1" href="#" title="More">
+            <svgicon icon="dots-vertical" />
+          </a>
+        </th>
+        <th class="msg__col text-left font-normal">
+          <a href="#" title="Settings">
+            <svgicon icon="settings" />
+          </a>
         </th>
       </tr>
     </thead>
@@ -16,7 +46,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapGetters, mapActions } from 'vuex'
   import { init, strip } from '~/shared'
   import Message from '~/components/Message'
 
@@ -26,14 +56,19 @@
     },
     fetch: init,
     computed: {
-      ...mapState({
-        messages: state => state.messages
-      })
+      allSelected: {
+        get() {
+          return this.$store.getters.allSelected
+        },
+        set() {
+          this.$store.dispatch('toggleAll')
+        }
+      },
+      ...mapState(['messages']),
+      ...mapGetters(['selectedMessages'])
+    },
+    methods: {
+      ...mapActions(['toggleAll'])
     }
-    // methods: {
-    //   goTo(id) {
-    //     this.$router.push({ path: `/${id}` })
-    //   }
-    // }
   }
 </script>
