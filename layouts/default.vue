@@ -8,15 +8,19 @@
     </nav>
 
     <main class="m-4 flex flex-col md:flex-row">
-      <aside class="mr-6">
-        <div>
-          <nuxt-link v-for="(item, key) of items" :key="key" :to="item.to" exact class="block hover:bg-grey-light rounded-r-full">
-            <svgicon :icon="item.icon" />
-            {{ item.title }}
+      <aside class="mr-6 w-full md:w-48">
+
+        <a class="inline-block border border-grey-light text-black rounded-full shadow hover:shadow-md py-2 px-4 my-2 mb-4" href="#" title="Compose">
+          <svgicon icon="plus" />
+          Compose
+        </a>
+
+        <div class="-ml-2 text-xs">
+          <nuxt-link v-for="(item, key) of items" :key="key" :to="item.to" exact class="nav-link flex items-center pr-4 hover:bg-grey-light rounded-r-full" :class="item.icon">
+            <svgicon :icon="item.icon" width="24" height="24" /> {{ item.title }}
           </nuxt-link>
-          <nuxt-link v-for="(value, key) in tags" :key="key" :to="`/tags/${key}`" class="block hover:bg-grey-light rounded-r-full capitalize" :class="key">
-            <svgicon icon="label" />
-            {{ key }}
+          <nuxt-link v-for="(value, key) in tags" :key="key" :to="`/tags/${key}`" class="nav-link flex items-center pr-4 hover:bg-grey-light rounded-r-full capitalize" :class="key">
+            <svgicon icon="label" width="24" height="24" /> {{ key }}
           </nuxt-link>
         </div>
       </aside>

@@ -14,5 +14,17 @@ export default {
   css: ['~/assets/css/style.css'],
   modules: ['@nuxtjs/axios'],
   plugins: ['~/plugins/vue-svgicon.js'],
-  serverMiddleware: ['~/api/index.js']
+  serverMiddleware: ['~/api/index.js'],
+  router: {
+    linkActiveClass: 'is-active'
+  },
+  loading: {
+    color: '#d5504c',
+    height: '5px'
+  },
+  loadingIndicator: {
+    name: 'rotating-plane',
+    background: '#d5504c',
+    color: 'white'
+  }
 }

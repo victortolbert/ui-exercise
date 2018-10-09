@@ -1,6 +1,6 @@
 <template>
   <table class="text-sm text-grey-darker table-fixed w-full">
-    <thead>
+    <thead v-if="messages.length">
       <tr class="flex border-b text-2xl">
         <th class="pr-3 text-left font-normal">
           <input v-model="allSelected" type="checkbox" />
@@ -18,7 +18,7 @@
             <a href="#" title="Report spam">
               <svgicon icon="alert-octagon" />
             </a>
-            <a href="#" title="Delete">
+            <a @click="removeMessages" href="#" title="Delete">
               <svgicon icon="delete" />
             </a>
             <a href="#" title="Mark as read">
@@ -39,8 +39,13 @@
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody v-if="messages.length">
       <Message v-for="message in messages" :key="message.id" :message="message" />
+    </tbody>
+    <tbody v-else>
+      <tr>
+        <td class="p-10">No Messages in Inbox</td>
+      </tr>
     </tbody>
   </table>
 </template>
@@ -61,14 +66,14 @@
           return this.$store.getters.allSelected
         },
         set() {
-          this.$store.dispatch('toggleAll')
+          this.$store.dispatch('toggleAll', this.messages)
         }
       },
       ...mapState(['messages']),
       ...mapGetters(['selectedMessages'])
     },
     methods: {
-      ...mapActions(['toggleAll'])
+      ...mapActions(['toggleAll', 'removeMessages'])
     }
   }
 </script>

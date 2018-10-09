@@ -25,7 +25,7 @@ const createStore = () => {
         return state.messages.filter(message => message.isSelected)
       },
       allSelected: state => {
-        return state.messages.every(message => message.isSelected)
+        return state.messages.length && state.messages.every(message => message.isSelected)
       }
     },
     mutations: {
@@ -36,17 +36,29 @@ const createStore = () => {
             isSelected: false
           }
         })),
-      TOGGLE_ALL: (state) =>
-        (state.messages = state.messages.map(message => {
+      TOGGLE_ALL: (state, messages) =>
+        (state.messages = messages.map(message => {
           return {
             ...message,
             isSelected: state.messages.every(message => message.isSelected) ? false : true
           }
-        }))
+        })),
+      REMOVE_MESSAGE(state, messageId) {
+        state.messages = state.messages.filter(message => message.id !== messageId)
+      },
+      REMOVE_MESSAGES(state) {
+        state.messages = []
+      }
     },
     actions: {
       toggleAll: ({ commit }, payload) => {
         commit('TOGGLE_ALL', payload)
+      },
+      removeMessage({ commit, state }, message) {
+        commit('REMOVE_MESSAGE', message.id)
+      },
+      removeMessages({ commit }) {
+        commit('REMOVE_MESSAGES')
       }
     }
   })

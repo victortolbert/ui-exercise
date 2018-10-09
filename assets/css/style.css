@@ -12,6 +12,43 @@ p {
   font-weight: 100;
 }
 
+.nav-link {
+  @apply .block .rounded-r-full .py-1 .pl-6;
+}
+
+.nav-link:hover {
+  @apply .bg-grey-light;
+}
+
+.nav-link.is-active {
+  @apply .font-bold .text-black .bg-grey-light;
+}
+
+.nav-link.inbox {
+  @apply .text-red;
+}
+
+.nav-link.inbox.is-active {
+  @apply .text-red .bg-red-lightest;
+}
+
+
+.nav-link.work {
+  @apply .text-blue;
+}
+
+.nav-link.travel {
+  @apply .text-green;
+}
+
+.nav-link.work.is-active {
+  @apply .text-blue .bg-blue-lightest;
+}
+
+.nav-link.travel.is-active {
+  @apply .text-green .bg-green-lightest;
+}
+
 .svg-icon {
   display: inline-block;
   width: 20px;

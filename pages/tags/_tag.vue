@@ -6,7 +6,7 @@
           <th class="pr-3 text-left font-normal">
             <input v-model="allSelected" type="checkbox" />
           </th>
-          <th class="msg__col text-left font-normal pr-2 flex-grow">
+          <th class="text-left font-normal pr-2 flex-grow">
             <div :class="[ selectedMessages.length ? 'hidden' : 'inline-block' ]">
               <a class="mr-1" href="#" title="Refresh">
                 <svgicon icon="refresh" />
@@ -33,7 +33,7 @@
               <svgicon icon="dots-vertical" />
             </a>
           </th>
-          <th class="msg__col text-left font-normal">
+          <th class="text-left font-normal">
             <a href="#" title="Settings">
               <svgicon icon="settings" />
             </a>
@@ -49,7 +49,7 @@
 
 <script>
   import { init } from '~/shared'
-  import { mapState, mapGetters, mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import Message from '~/components/Message'
 
   export default {
@@ -57,21 +57,18 @@
       Message
     },
     fetch: init,
-    data() {
-      return {
-        messages: this.$store.getters.getMessagesByTag(this.$route.params.tag)
-      }
-    },
     computed: {
+      messages() {
+        return this.$store.getters.getMessagesByTag(this.$route.params.tag)
+      },
       allSelected: {
         get() {
           return this.$store.getters.allSelected
         },
         set() {
-          this.$store.dispatch('toggleAll')
+          this.$store.dispatch('toggleAll', this.messages)
         }
       },
-      // ...mapState(['messages']),
       ...mapGetters(['selectedMessages'])
     },
     methods: {
