@@ -7,7 +7,7 @@
       {{ message.sender }}
     </td>
     <td class="md:py-2 pr-1 text-black whitespace-no-wrap" v-if="message.tags.length" @click.stop="goTo(message.id)">
-      <span v-if="message.tags.length" class="mr-1 px-1 bg-grey-light rounded-sm text-xs capitalize" :key="tag" v-for="tag in message.tags">
+      <span v-if="message.tags.length" class="mr-1 p-1 bg-grey-light rounded text-xs capitalize" :key="tag" v-for="tag in message.tags" :class="tag">
         {{tag}}
       </span>
     </td>
