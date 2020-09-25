@@ -1,6 +1,6 @@
 # UI Exercise
 
-To preview: http://ui-exercise.now.sh
+To preview: https://ui-exercise.victortolbert.com
 
 > Note: _Initially, it may take up to 60 seconds to wakeup the server_
 
@@ -22,4 +22,10 @@ $ npm run dev
 # build for production and launch server
 $ npm run build
 $ npm start
+
+# Run unit tests
+$ npm run test:unit
+
+# Run end-to-end tests
+$ npm run test:e2e
 ```
