@@ -1,5 +1,5 @@
 <template>
-  <div :class="{hidden: $store.state.menuOpen == false}">
+  <div :class="{hidden: sidebarOpen === false}">
     <div class="fixed inset-0 z-40 flex">
       <div class="fixed inset-0">
         <div class="absolute inset-0 bg-gray-600 opacity-75" />
@@ -25,9 +25,16 @@
 </template>
 
 <script>
-export default {
-  data: () => ({
-    show: true,
-  }),
-}
+import {defineComponent} from '@nuxtjs/composition-api'
+import useOffCanvasSidebar from '@/composables/useOffCanvasSidebar'
+
+export default defineComponent({
+  setup() {
+    const {sidebarOpen} = useOffCanvasSidebar()
+
+    return {
+      sidebarOpen,
+    }
+  },
+})
 </script>
