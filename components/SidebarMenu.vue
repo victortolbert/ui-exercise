@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-1">
-    <NuxtLink exact to="/messages" @click="sidebarOpen = false" class="nav-link inbox">
+    <NuxtLink exact to="/messages" @click.native="closeMenu" class="nav-link inbox">
       <SvgIcon icon="inbox" class="mr-1 text-2xl" />
       Inbox
     </NuxtLink>
@@ -10,7 +10,7 @@
       v-for="(count, tag) in tags"
       :key="tag"
       :class="tag"
-      @click="sidebarOpen = false"
+      @click.native="closeMenu"
       class="nav-link"
     >
       <SvgIcon icon="inbox" class="mr-1 text-2xl" />
@@ -27,19 +27,17 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
 import {defineComponent} from '@nuxtjs/composition-api'
 import useMessages from '@/composables/useMessages'
-import useOffCanvasSidebar from '@/composables/useOffCanvasSidebar'
 
 export default defineComponent({
   name: 'SidebarMenu',
   setup() {
     const {tags} = useMessages()
-    const {sidebarOpen} = useOffCanvasSidebar
 
     return {
       tags,
-      sidebarOpen,
     }
   },
   data() {
@@ -47,12 +45,15 @@ export default defineComponent({
       links: [{title: 'Inbox', to: {name: 'index'}, icon: 'inbox'}],
     }
   },
+  methods: {
+    ...mapMutations(['closeMenu']),
+  },
 })
 </script>
 
 <style lang="postcss">
 .nav-link {
-  @apply flex rounded-r-full py-1 pl-6 flex items-center px-2 py-2 font-medium text-gray-900 transition duration-150 ease-in-out bg-gray-100 rounded-md group focus:outline-none focus:bg-gray-50;
+  @apply flex rounded-r-full py-1 pl-6 flex items-center px-2 py-2 font-medium text-gray-900 transition duration-150 ease-in-out  rounded-md group focus:outline-none focus:bg-gray-50;
 }
 
 .nav-link:hover {

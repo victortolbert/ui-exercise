@@ -3,7 +3,7 @@
     <button
       class="flex items-center justify-center w-12 h-12 rounded-full focus:outline-none focus:bg-gray-600"
       aria-label="Close sidebar"
-      @click="sidebarOpen = false"
+      @click="closeMenu"
     >
       <svg class="w-6 h-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
         <path
@@ -18,16 +18,11 @@
 </template>
 
 <script>
-import {defineComponent} from '@nuxtjs/composition-api'
-import useOffCanvasSidebar from '@/composables/useOffCanvasSidebar'
+import {mapMutations} from 'vuex'
 
-export default defineComponent({
-  setup() {
-    const {sidebarOpen} = useOffCanvasSidebar()
-
-    return {
-      sidebarOpen,
-    }
+export default {
+  methods: {
+    ...mapMutations(['closeMenu']),
   },
-})
+}
 </script>
